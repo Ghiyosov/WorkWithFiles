@@ -162,4 +162,93 @@ void ManageFiles()
     Console.Write("Ваш выбор: ");
     string choice = Console.ReadLine();
     // Реализуйте соответствующие операции
+    switch (choice)
+    {
+        case "1":
+            try
+            {
+                string path = Console.ReadLine();
+                File.Create(path);
+                string text = Console.ReadLine();
+                File.AppendAllText(path, text);
+                Console.WriteLine($@"{path} successfully created.
+                                        text {text} successfully added.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            break;
+        case "2":
+            try
+            {
+                string path = Console.ReadLine();
+                string[] texts = File.ReadAllLines(path);
+                Console.WriteLine("-----------------------------------");
+                foreach (var VARIABLE in texts)
+                {
+                    Console.WriteLine(VARIABLE);
+                }
+                Console.WriteLine("-----------------------------------");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            break;
+        case "3":
+            try
+            {
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            break;
+        case "4":
+            try
+            {
+                string path = Console.ReadLine();
+                File.Delete(path);
+                Console.WriteLine($"{path} deleted.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            break;
+        case "5":
+            try
+            {
+                string path = Console.ReadLine();
+                FileInfo fileInfo = new FileInfo(path);
+                while (File.Exists(path))
+                {
+                    Console.WriteLine("Свойства файла:");
+                    Console.WriteLine($"Полное имя: {fileInfo.FullName}");
+                    Console.WriteLine($"Имя файла: {fileInfo.Name}");
+                    Console.WriteLine($"Расширение: {fileInfo.Extension}");
+                    Console.WriteLine($"Размер: {fileInfo.Length} байт");
+                    Console.WriteLine($"Дата создания: {fileInfo.CreationTime}");
+                    Console.WriteLine($"Дата последнего изменения: {fileInfo.LastWriteTime}");
+                    Console.WriteLine($"Дата последнего доступа: {fileInfo.LastAccessTime}");
+                    Console.WriteLine($"Только для чтения: {fileInfo.IsReadOnly}");
+                    Console.WriteLine($"Атрибуты файла: {fileInfo.Attributes}");
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            break;
+        case "0":
+            return;
+    }
 }
